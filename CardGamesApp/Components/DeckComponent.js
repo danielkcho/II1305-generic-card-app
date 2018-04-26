@@ -10,18 +10,14 @@ import {cardifier, buildDeck} from '../functions/functions';
 import {PlayingCard, Deck, Card} from './CardObjects';
 import deckStore from '../Store/DeckStore';
 import MovableCard from '../Components/MovableCard';
-import client from '../Multiplayer/Client';
 
 export class DeckComponent extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      deck: [],
-    }
+    this.state = {deck: []}
   }
 
   onPress = () => {
-    this.client.write("data");
     this.addCardToHand();
   }
 
@@ -31,10 +27,6 @@ export class DeckComponent extends Component {
         deck: deckStore.getAll()
       })
     })
-  }
-
-  componentDidMount(){
-    this.client = client;
   }
 
   addCardToHand(){

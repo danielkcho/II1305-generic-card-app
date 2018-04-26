@@ -1,0 +1,105 @@
+#####                aboutJSmaps.txt                     #####
+#                                                            #
+**************************************************************
+* Here's an opportunity to learn some more JS. I researched  *
+* how to make a bijective map invertible. To accomplish this *
+* there was a suggestion to create 2 maps when mapping, and  *
+* set the key for both objects to the same value. That way   *
+* we can the map the objects in both direction since they    *
+* share a key. The solution uses self-executing functions.   *
+**************************************************************
+
+Since we only theoretically covered self-executing functions
+in Programming II I figured this would be a good time to 
+share my findings so that we can all better understand 
+the functional part of JS programming.
+
+A self-executing function looks like this:
+
+(function() {
+
+//do stuff here
+
+})();
+
+now if this looks like a mess then remember from Prog II how
+we could set a variable to represent a function. We can do 
+the same thing in JS.
+
+So let's name our function F:
+
+F = (() => //do stuff)
+
+and then in Prog II invoking this function with no input
+is done like this:
+
+F.();
+
+In JS the syntax is different but the principle is the same.
+
+Going back to our original self-executing function:
+
+(function(){
+//do stuff
+})();
+
+You can probably now see how this creates a function
+with no input that "does stuff" and then immediately
+calls the function with no input.
+
+We could do something like this, for instance:
+
+(function(a,b){
+return a+b;
+})(2,3);
+
+
+
+now the example for an invertible map I found looks
+like this:
+
+
+
+var objectY = {},
+    objectX = {
+  "a" : "apple",
+  "g" : "ginger",
+  "o" : "orange", 
+  "p" : "pear",
+  "st": "sweetarts" (<-----by the way, what is that?)
+};
+
+//so above it creates two KV-maps. One empty and one
+//that maps letters to edibles.
+
+(function(){
+  for(var key in objectX){
+    if(objectX.hasOwnProperty(key)){
+      objectY[objectX[key]] = key;
+    }
+  }
+})();
+
+//the only thing here is "if(objectX.hasOwnProperty(key))"
+//it refers to if objectX has keys. If it does not it doesn't
+//create an inverse map.
+//we use indicies for keys, so if we would get something
+//looking like this:
+
+cards = {
+  card1 : renderedCard1,
+  card2 : renderedCard2,
+  card3 : renderedCard3
+}
+inverseCards = {
+  renderedCard1 : card1,
+  renderedCard2 : card2,
+  renderedCard3 : card3
+}
+
+//the BIG question is if we can use index as key
+//still using this method. In the first place we
+//wanted to move away from implicit keys and use 
+//explicit keys for mapping, so while solving
+//that we probably want to also implement an
+//inverse map.

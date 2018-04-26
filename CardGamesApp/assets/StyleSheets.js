@@ -1,6 +1,8 @@
 import { Text, AppRegistry, Alert, Button, Dimensions, FlatList, Platform,
   Props, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
 
+//The general stylesheet for creating containers and other designs.
+
 const styles = StyleSheet.create({
   container: {
     paddingTop: 70,
@@ -53,15 +55,23 @@ const styles = StyleSheet.create({
     width: 45.5,
     height: 69.5
   },
-
   face: {
     flex: 1
   },
-
   back: {
     flex: 1
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: 'transparent'
+  },
+  texting: {
+    fontSize: 30
+  },
+  menustyle: {
+    fontSize: 20,
+    paddingTop: 7
   }
-
 })
 
 export default styles;

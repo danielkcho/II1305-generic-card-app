@@ -14,8 +14,8 @@ import styles from '../assets/StyleSheets';
 
 export default class FlipCard extends Component{
 
-  constructor (props) {
-      super(props)
+	constructor (props) {
+    	super(props)
 
     // set reversed boolean for detect other side size
     const isFlipped = (this.props.alignHeight || this.props.alignWidth) ? !props.flip : props.flip;

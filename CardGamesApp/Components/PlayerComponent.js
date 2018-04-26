@@ -12,7 +12,7 @@ export class PlayerComponent extends Component {
     this.state = {players: []};
   }
 // read the player store if it changes reread it
-  componentDidMount(){
+  componentWillMount(){
     playerStore.on("Change", () => {
       this.setState({
         players: playerStore.getAll()

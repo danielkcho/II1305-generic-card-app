@@ -1,6 +1,11 @@
 import dispatcher from "../Dispatcher/Dispatcher";
 
-//sample action for adding cards to hand
+/******************************************************
+* This is where we dispatch actions to the dispatcher
+* in order for the stores to listen to these dispatches
+* and make an internal action based on the given
+* dispatched action. All the actions are straight forward
+*******************************************************/
 export function addCardToHand(card){
   dispatcher.dispatch({
     type: "ADD_CARD_TO_HAND",
@@ -8,7 +13,6 @@ export function addCardToHand(card){
   })
 }
 
-//sample action for removing cards from hand
 export function removeCardFromHand(id){
   dispatcher.dispatch({
     type: "REMOVE_CARD_FROM_HAND",
@@ -16,7 +20,7 @@ export function removeCardFromHand(id){
   })
 }
 
-//action for shuffling deck
+
 export function shuffleDeck(){
   dispatcher.dispatch({
     type: "SHUFFLE_DECK",
@@ -99,5 +103,3 @@ export function removePlayer(id){
     id,
   })
 }
-
-

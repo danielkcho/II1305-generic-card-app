@@ -1,0 +1,10 @@
+##Written by M. Brisfors
+
+
+
+
+def stop do{
+  "there are two types of people.
+   those who joke recursively,
+   and those who say" stop
+}

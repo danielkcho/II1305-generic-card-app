@@ -17,6 +17,10 @@ export class BoardComponent extends Component {
     this.state.faceUp = boardStore.getAll();
   }
 
+  /********************************************************
+  * Once Boardstore emits change, either rChange or Change,
+  * the cards on the board will be updated
+  ********************************************************/
   componentWillMount(){
     boardStore.on("Change", () => {
       this.setState({
@@ -24,8 +28,18 @@ export class BoardComponent extends Component {
       })
     })
 
+    boardStore.on("rChange", () => {
+      this.setState({
+        faceUp: boardStore.getAll()
+      })
+    })
+
   }
 
+  /*******************************************************************************
+  * I will not comment on the code below until we change the method used, because
+  * this will not co-operate with drawing cards from hand to board and vice versa.
+  *******************************************************************************/
   render() {
 
     var isVisible = (this.state.faceUp.length > 0)? true : false;

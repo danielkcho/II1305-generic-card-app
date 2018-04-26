@@ -3,6 +3,7 @@ import dispatcher from '../Dispatcher/Dispatcher';
 import FlipCard from '../Components/FlipCard';
 import {cardifier, buildDeck} from '../functions/functions';
 import {PlayingCard, Deck, Card} from '../Components/CardObjects';
+import * as Actions from '../Actions/Actions';
 
 class HandStore extends EventEmitter{
 
@@ -37,12 +38,11 @@ class HandStore extends EventEmitter{
     let i = 0;
     for (i = 0; i < this.faceUp.length; i++){
       if(card.getID() == this.faceUp[i].getID()) {
-        this.faceUp.splice(i, 1);
+        var card = this.faceUp.splice(i, 1);
         break;
       }
     }
     this.emit("rChange");
-    this.emit("Change");
   }
 
 /*
