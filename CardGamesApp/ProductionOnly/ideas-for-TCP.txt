@@ -1,0 +1,58 @@
+
+
+when server receives data:
+
+data is a dispatch. Use dispatcher to send identical data locally?
+
+
+
+
+--------         --------
+|      |         |      |
+| TCP  |         |DISP- |         ##########
+|SERVER|  -----> |ATCHER|  -----> # STORES #
+|      |         |      |         ##########
+|______|         |______|
+
+
+
+Question:
+Will this lead to duplicate actions?
+
+
+Case: we draw a card from deck to board.
+
+Preconditions: Board is empty and deck has 1 card in it.
+
+Desired outcome: Board on every device has 1 card on it.
+                 Deck on every device has 0 cards in it.
+
+
+Step 1: call action MOVE_CARD_TO_BOARD with a popped card
+        from deck store using Actions.moveCardToBoard(deckstore.pop());
+
+Step 2: Locally, we update our store using old method that we know works
+        for one device.
+
+Step 3: We write to each TCP socket we are clients on rather than servers.
+        The data we write contains all the same data that the dispatcher
+        sends locally. Perhaps it is the same as the dispatch?
+
+Step 4: Each other device gets a 'data' event on their server socket.
+
+Step 5: We parse the data on the server sockets by having them create an
+        identical dispatch on their devices locally.
+
+Logical step: We have done the same action on each device. If the action is
+              causal and it is a static LTI-system then each system should
+              react the same way to the input signal.
+              
+              Hence we expect all devices to have the same state in their
+              board store. QED.
+
+
+Problem: We did not update the deck store, so while we have the same board
+         store state we have disparate deck stores.
+
+Solution(?): When we pop a card from a store we use TCP socket as above
+             to dispatch a change in the store doing the same action.
