@@ -183,7 +183,6 @@ export default class FlipCard extends Component{
 
             Actions.addCardToBoard(this.props.card);
             Actions.fromHandToBoard(this.props.card);
-            this.props.card.setStatus('board');
             }
             else if(this.props.card.getStatus() == 'board') {
               //When array mapping is fixed we can implment more stuff here and above
