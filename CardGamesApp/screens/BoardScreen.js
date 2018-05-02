@@ -76,8 +76,8 @@ export default class BoardScreen extends Component {
           <DeckComponent>
           </DeckComponent>
      	</View>
-      <View style={{flex: 0.1, backgroundColor: 'black'}}></View>
-      <View style={{flexDirection: 'row', flex: 5, backgroundColor: 'steelblue'}}>
+      <View style={{flex: 0.04, backgroundColor: 'black'}}></View>
+      <View style={{flexDirection: 'row', flex: 1.8, backgroundColor: 'steelblue'}}>
       <HandComponent/>
       </View>
     </View>

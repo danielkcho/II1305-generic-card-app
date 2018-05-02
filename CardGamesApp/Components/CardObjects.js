@@ -38,50 +38,55 @@ export class PlayingCard extends Card{
     this.status = 'deck';
     this.change = false;
   }
-
+  //returns the face of the card.
   getFace(){
     return super.getFace();
   }
-
+  //returns the back-side of the card.
   getBack(){
     return super.getBack();
   }
 
-//returns the color (suite) of the card
+//returns the color (suite) of the card.
   getColor(){
     return this.color;
   }
 
-//returns the value of the card
+//returns the value of the card.
   getValue(){
     return this.value;
   }
 
+  //puts the face of the card.
   setFace(face){
     super.setFace(face);
   }
 
+  //puts the back-side of the card.
   setBack(back){
     super.setBack(back);
   }
 
-//new method for getting a unique identifier.
+  //method for getting a unique identifier.
   getID(){
     return this.ID;
   }
 
+  //mmethod for knowing where the card is at a given time, set the current loc.
   setStatus(status){
     this.status = status;
   }
-
+  //method for knowing where the card is at a given time, get the current loc.
   getStatus() {
     return this.status;
   }
 
+  //method for knowing if the card has changed, meaning face -> back, back -> face.
   isChanged() {
     return this.change;
   }
 
+  //method for explaining that the change of face to back and vice versa has happened.
   changed() {
     this.change = !(this.change);
   }
