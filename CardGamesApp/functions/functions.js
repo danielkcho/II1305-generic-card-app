@@ -144,3 +144,44 @@ export function specialkvMapper(deck){
   }
   return output;
 }
+
+export function jsonparser(json){
+  type = json.type;
+
+  switch(json.argtype){
+    case "card": {
+      card = new PlayingCard(1,1,2,2);
+      card.buildWithJSON(json.arg);
+      output = {
+      type: type,
+      card,
+      }
+      return output;
+    }
+    case "deck": {
+      deck = new Deck();
+      deck.buildWithJSON(json.arg);
+      output = {
+      type: type,
+      deck,
+      }
+      return output;
+    }
+    case "player": {
+      player = new Player(1);
+      player.buildWithJSON(json.arg);
+      output = {
+      type: type,
+      player,
+      }
+      return output;
+    }
+    case "nil": {
+      output = {
+      type: type,
+      }
+      return output;
+    }
+    default: break;
+  }
+}
