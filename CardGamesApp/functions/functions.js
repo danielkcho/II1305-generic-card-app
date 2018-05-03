@@ -5,6 +5,9 @@ import FlipCard from '../Components/FlipCard';
 import styles from '../assets/StyleSheets';
 import {PlayingCard, Deck, Card} from '../Components/CardObjects';
 
+
+require("json-circular-stringify");
+
 export function cardifier(playingCard) {
   var i = 0;
   var num = playingCard.getValue();
@@ -148,17 +151,17 @@ export function specialkvMapper(deck){
 export function jsonparser(json){
   type = json.type;
 
-  switch(json.argtype){
-    case "card": {
+  switch(json.argType){
+    case "CARD": {
       card = new PlayingCard(1,1,2,2);
-      card.buildWithJSON(json.arg);
+      card.buildWithJSON(JSON.parse(json.arg));
       output = {
       type: type,
       card,
       }
       return output;
     }
-    case "deck": {
+    case "DECK": {
       deck = new Deck();
       deck.buildWithJSON(json.arg);
       output = {
@@ -167,7 +170,7 @@ export function jsonparser(json){
       }
       return output;
     }
-    case "player": {
+    case "PLAYER": {
       player = new Player(1);
       player.buildWithJSON(json.arg);
       output = {
@@ -176,7 +179,7 @@ export function jsonparser(json){
       }
       return output;
     }
-    case "nil": {
+    case "NIL": {
       output = {
       type: type,
       }

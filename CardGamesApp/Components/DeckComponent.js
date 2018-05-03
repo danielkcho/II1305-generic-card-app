@@ -12,6 +12,8 @@ import deckStore from '../Store/DeckStore';
 import MovableCard from '../Components/MovableCard';
 import client from '../Multiplayer/Client';
 
+require("json-circular-stringify");
+
 export class DeckComponent extends Component {
   constructor(props) {
     super(props)
@@ -33,7 +35,7 @@ export class DeckComponent extends Component {
 */
     card = cardifier(new PlayingCard(1,1,2,13));
     jsoncard = JSON.stringify(card);
-    payload = {type: "ADD_CARD_TO_BOARD", jsoncard,};
+    payload = {type: "ADD_CARD_TO_BOARD", argType: "CARD", arg: jsoncard,};
     jsonpayload = JSON.stringify(payload);
     client.write(jsonpayload);
     this.addCardToHand();
