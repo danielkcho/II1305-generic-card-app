@@ -1,5 +1,3 @@
-'use strict'
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as Actions from '../Actions/Actions';
@@ -166,16 +164,18 @@ export default class FlipCard extends Component{
           activeOpacity={1}
           onLongPress={() => {
             if(this.props.card.getStatus() == 'hand'){
-              if(!this.state.isFlipped) {
               Actions.addCardToBoard(this.props.card);
-              Actions.fromHandToBoard(this.props.card);
-              }
+              Actions.fromHandToBoard(this.props.card); 
             }
             else if(this.props.card.getStatus() == 'board') {
-              //When array mapping is fixed we can implment stuff here and above
+              Actions.addCardToHand(this.props.card);
+              Actions.fromBoardToHand(this.props.card);
             }
           }}
-          onPress={() => {this._toggleCard(); }}
+          onPress={() => {
+            this._toggleCard(); 
+            this.props.card.flip();
+          }}
         >
           <Animated.View
             {...this.props}

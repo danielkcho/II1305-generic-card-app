@@ -55,7 +55,11 @@ export class HandComponent extends Component {
 
     if(isVisible){
       array = this.state.faceUp.map(function(num) {
-      return num.getFace()
+        if(num.isFlipped()){
+          return num.getBack()
+        }else{
+          return num.getFace();
+        }
     });
     }else{
       array = <View/>

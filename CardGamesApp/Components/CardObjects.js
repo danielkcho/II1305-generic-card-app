@@ -25,15 +25,18 @@ export class Card {
   setBack(back){
     this.back = back;
   }
+
+  buildWithJSON(json){
+    this.face = json.face;
+    this.back = json.back;
+  }
+
 }
 
 //interactive building simulator with a guy called Jason
 //or, perhaps, useless code we need because JSON can't stringify
 //object methods
-  buildWithJSON(json){
-    this.face = json.face;
-    this.back = json.back;
-  }
+  
 
 //class for handling playing cards in particular
 export class PlayingCard extends Card{
@@ -45,6 +48,7 @@ export class PlayingCard extends Card{
     this.ID = Math.random() + "-" + color + "-" + value;
     this.status = 'deck';
     this.change = false;
+    this.flipped = false;
   }
 
   getFace(){
@@ -95,6 +99,15 @@ export class PlayingCard extends Card{
   isChanged() {
     return this.change;
   }
+
+  isFlipped() {
+    return this.flipped;
+  }
+
+  flip() {
+    this.flipped = !(this.flipped);
+  }
+
 
 //this card has changed: TRUE <=> FALSE
   changed() {
