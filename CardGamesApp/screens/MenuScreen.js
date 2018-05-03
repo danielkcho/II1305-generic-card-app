@@ -35,10 +35,10 @@ export default class MenuScreen extends Component {
   };
 
   hideMenu = () => {
-    this._menu = ref;
+    this._menu.hide();
   };
 
-  showmenu = () => {
+  showMenu = () => {
     this._menu.show();
   };
 
@@ -86,8 +86,7 @@ render() {
 
         <Menu
          ref={this.setMenuRef}
-         button={<Text style ={{fontSize:20, color: 'green'}} onPress={this.showMenu}>Filter Deck</Text>}
-       >
+         button={<Text style ={{fontSize:20, color: 'green'}} onPress={this.showMenu}>Filter Deck</Text>}>
          <MenuItem onPress={()=>{
              this.showMenu();
          }}>Less Than</MenuItem>
@@ -96,7 +95,6 @@ render() {
          <MenuDivider />
          <MenuItem onPress={this.hideMenu}>Greater Than</MenuItem>
        </Menu>
-
         <TouchableOpacity
             style={{padding: 10,paddingBottom:1}}
             onPress={()=>{
