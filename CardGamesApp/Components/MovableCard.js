@@ -62,10 +62,20 @@ componentWillMount() {
   // Calculate the transform property and set it as a value for our style which we add below to the Animated.View component
   let imageStyle = {zIndex: this.state.depth, height: 70.5, width:45, backgroundColor:'transparent',direction: 'ltr',position:'absolute',bottom: 70, alignItems: 'center',alignSelf:'baseline', transform: [{translateX}, {translateY}]};
        const {card} = this.props;
-        return(
+       if(this.props.card.isFlipped()){
+          return(
+                <Animated.View style={imageStyle} {...this._panResponder.panHandlers}>
+                   {this.props.card.getBack()}
+                </Animated.View>
+          )
+       }else{
+          return(
                 <Animated.View style={imageStyle} {...this._panResponder.panHandlers}>
                    {this.props.card.getFace()}
                 </Animated.View>
-        )
+          )
+        }
+       
+        
     }
 }

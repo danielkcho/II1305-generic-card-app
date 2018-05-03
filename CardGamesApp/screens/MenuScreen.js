@@ -29,6 +29,19 @@ export default class MenuScreen extends Component {
   }
 
   _menu = null;
+  _menuC = null;
+
+  setMenuCRef = ref => {
+    this._menuC = ref;
+  };
+
+  hideMenuC = () => {
+    this._menuC.hide();
+  };
+
+  showMenuC = () => {
+    this._menuC.show();
+  };
 
   setMenuRef = ref => {
     this._menu = ref;
@@ -76,7 +89,7 @@ render() {
             ref="toast"
             style={{backgroundColor:'green'}}
             position='top'
-            positionValue={200}
+            positionValue={250}
             fadeInDuration={750}
             fadeOutDuration={1000}
             opacity={0.8}
@@ -108,12 +121,32 @@ render() {
               ref="toast"
               style={{backgroundColor:'green'}}
               position='top'
-              positionValue={200}
+              positionValue={250}
               fadeInDuration={750}
               fadeOutDuration={1000}
               opacity={0.8}
               textStyle={{color:'black'}}
           />
+        <Menu
+          ref={this.setMenuCRef}
+          button={<Text style ={{fontSize:20, color: 'green', paddingTop: 10}} onPress={this.showMenuC}>Clear board</Text>}>
+          <MenuItem onPress={()=>
+            {this.hideMenuC();
+             Actions.clearAll();
+             this.refs.toast.show('Cleared & added a new Deck', DURATION.LENGTH_LONG);
+            }}>Confirm</MenuItem>
+        </Menu>
+
+         <Toast
+                       ref="toast"
+                       style={{backgroundColor:'green'}}
+                       position='center'
+                       positionValue={250}
+                       fadeInDuration={750}
+                       fadeOutDuration={1000}
+                       opacity={0.8}
+                       textStyle={{color:'black'}}
+           />
 
         <TouchableOpacity
             style={{paddingTop: 10}}
@@ -128,7 +161,7 @@ render() {
             ref="toast"
             style={{backgroundColor:'green'}}
             position='top'
-            positionValue={200}
+            positionValue={250}
             fadeInDuration={750}
             fadeOutDuration={1000}
             opacity={0.8}
@@ -184,7 +217,7 @@ render() {
           ref="toast"
           style={{backgroundColor:'green'}}
           position='top'
-          positionValue={200}
+          positionValue={250}
           fadeInDuration={750}
           fadeOutDuration={1000}
           opacity={0.8}

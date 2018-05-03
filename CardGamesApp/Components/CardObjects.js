@@ -36,7 +36,7 @@ export class PlayingCard extends Card{
     this.value = value;
     this.ID = Math.random() + "-" + color + "-" + value;
     this.status = 'deck';
-    this.change = false;
+    this.flipped = false;
   }
 
   getFace(){
@@ -78,14 +78,13 @@ export class PlayingCard extends Card{
     return this.status;
   }
 
-  isChanged() {
-    return this.change;
+  isFlipped(){
+    return this.flipped;
   }
 
-  changed() {
-    this.change = !(this.change);
+  flip(){
+    this.flipped = !(this.flipped);
   }
-
 }
 
 //class for representing a deck of cards

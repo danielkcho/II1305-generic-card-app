@@ -24,6 +24,11 @@ export class BoardComponent extends Component {
       })
     })
 
+    boardStore.on("rChange", () => {
+      this.setState({
+        faceUp: boardStore.getAll()
+      })
+    })
   }
 
   render() {

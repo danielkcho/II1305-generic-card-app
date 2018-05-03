@@ -12,17 +12,17 @@ import handStore from '../Store/HandStore'
 import MovableCard from '../Components/MovableCard';
 import * as Actions from '../Actions/Actions';
 import { Player } from '../Components/PlayerObjects';
-import dispatcher from "../Dispatcher/Dispatcher";
+
 
 var net = require("net");
-var serverPort = 9005;
+var serverPort = 9000;
 
 var server = net.createServer((socket) => {
       Alert.alert(socket.address().address);
       Actions.addPlayer(new Player("player 1"));
 
       socket.on('data', (data) => {
-        // Actions.addCardToBoard(cardifier(new PlayingCard(1,1,1,14)));
+        //Actions.addCardToBoard(cardifier(new PlayingCard(1,1,1,14)));
         dispatcher.dispatch(data);
       });
 

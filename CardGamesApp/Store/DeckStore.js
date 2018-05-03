@@ -36,6 +36,13 @@ class DeckStore extends EventEmitter{
     this.state.deckPress = true;
   }
 
+  clearDeck(){
+    this.deck = buildDeck(new Deck());
+    this.emit("Change");
+    this.emit("dChange");
+  }
+
+
 //return top card of deck
   pop(){
     this.emit("dChange");
@@ -77,6 +84,10 @@ class DeckStore extends EventEmitter{
       }
       case "ADD_JOKER": {
         this.createJoker();
+        break;
+      }
+      case "CLEAR_ALL": {
+        this.clearDeck();
         break;
       }
 /*

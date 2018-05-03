@@ -229,4 +229,10 @@ export function removePlayer(id){
   })
 }
 
+export function clearAll(){
+  dispatcher.dispatch({
+    type: "CLEAR_ALL",
+  })
+}
+
 

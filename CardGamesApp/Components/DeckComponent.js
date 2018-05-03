@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, AppRegistry, Alert, Button, Dimensions, FlatList, Platform,
-  Props, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
+  Props, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, TouchableOpacity } from 'react-native';
 import handStore from '../Store/HandStore';
 import FlipCard from './FlipCard';
 import dispatcher from '../Dispatcher/Dispatcher';
@@ -20,9 +20,16 @@ export class DeckComponent extends Component {
     }
   }
 
+  onLongPress = () => {
+    cardToSend = deckStore.pop();
+    cardToSend.flip();
+    Actions.addCardToBoard(cardToSend);
+  }
+
   onPress = () => {
     card = cardifier(new PlayingCard(1,1,2,13));
-    this.client.write({type: "ADD_CARD_TO_BOARD", card,});
+    var temp = {type: "ADD_CARD_TO_BOARD", card,};
+    this.client.write("" + temp);
     this.addCardToHand();
   }
 
@@ -45,12 +52,13 @@ export class DeckComponent extends Component {
   render() {
     var deck =
     (<View style={styles.cardback}>
-      <TouchableHighlight
+      <TouchableOpacity
        style={styles.button}
        onPress={this.onPress}
+       onLongPress={this.onLongPress}
       >
        <Text style={styles.buttonText}>DECK</Text>
-      </TouchableHighlight>
+      </TouchableOpacity>
       </View>);
     if(deckStore.getAll() == null) {
       return(<View/>)
