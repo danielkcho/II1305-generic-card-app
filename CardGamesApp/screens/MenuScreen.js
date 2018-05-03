@@ -209,16 +209,15 @@ render() {
         </Dialog.Container>
         </View>
       <View style = {{paddingTop: 80, justifyContent: 'center', alignItems: 'center'}}>
-      <Button 
-      color = 'green' 
+      <TouchableOpacity 
       onPress = {
         () => {
           this.setState({
             dialogVisible: true
           });
-        }}
-        title = 'Connect device'
-        />
+        }}>
+        <Text style={{fontSize:20, color:'green'}}>Connect Device</Text>
+      </TouchableOpacity>
       <View><Text> {this.state.ipAddress} </Text></View>
       </View>
       </View>
