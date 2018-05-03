@@ -5,7 +5,7 @@ Below you'll find information about performing common tasks. The most recent ver
 ## BE ADVISED
 You need to run these commands in order for the ejected project to work:
 
-### npm install react-native-tcp --save`
+### `npm install react-native-tcp --save`
 
 After the command above, you need to link the library which is done by the following command:
 
@@ -25,7 +25,7 @@ After all of the commands above, make sure to add the following to package.json
     "net": "react-native-tcp"
   }
 }
-```
+``
 
 -----------------------------------------------------------------------------------------------------------------------
 
