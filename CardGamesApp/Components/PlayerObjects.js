@@ -61,4 +61,13 @@ export class Player {
     this.addr = addr;
   }
 
+//JSON doesn't like methods. Rebuild with this.
+  buildWithJSON(json){
+    this.name = json.name;
+    this.id = json.id;
+    this.color = json.color;
+    this.addr = json.addr;
+    this.connection = json.connection;
+  }
+
 }

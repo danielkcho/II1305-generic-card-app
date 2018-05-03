@@ -27,6 +27,14 @@ export class Card {
   }
 }
 
+//interactive building simulator with a guy called Jason
+//or, perhaps, useless code we need because JSON can't stringify
+//object methods
+  buildWithJSON(json){
+    this.face = json.face;
+    this.back = json.back;
+  }
+
 //class for handling playing cards in particular
 export class PlayingCard extends Card{
 
@@ -36,7 +44,7 @@ export class PlayingCard extends Card{
     this.value = value;
     this.ID = Math.random() + "-" + color + "-" + value;
     this.status = 'deck';
-    this.flipped = false;
+    this.change = false;
   }
 
   getFace(){
@@ -57,10 +65,12 @@ export class PlayingCard extends Card{
     return this.value;
   }
 
+//super. Save a way to render the face of the card
   setFace(face){
     super.setFace(face);
   }
 
+//super. Save a way to render the back of the card
   setBack(back){
     super.setBack(back);
   }
@@ -70,27 +80,50 @@ export class PlayingCard extends Card{
     return this.ID;
   }
 
+//set status of the card
+//someone insert comment about what status means, please
   setStatus(status){
     this.status = status;
   }
 
+//get status
   getStatus() {
     return this.status;
   }
 
-  isFlipped(){
-    return this.flipped;
+//has this card changed? TRUE/FALSE
+  isChanged() {
+    return this.change;
   }
 
-  flip(){
-    this.flipped = !(this.flipped);
+//this card has changed: TRUE <=> FALSE
+  changed() {
+    this.change = !(this.change);
   }
+
+//this will rebuild the card using a JSON representation of it
+//a necessary evil
+  buildWithJSON(json){
+    this.face = json.face;
+    this.back = json.back;
+    this.color = json.color;
+    this.value = json.value;
+    this.ID = json.ID;
+    this.status = json.status;
+    this.change = json.change;
+  }
+
 }
 
 //class for representing a deck of cards
 export class Deck {
   constructor(){
     this.cards = new Array();
+  }
+
+//JSON stuff again. Shot version, JSON can't handle methods
+  buildWithJSON(json){
+    this.deck = json.deck;
   }
 
 //shuffle the deck
@@ -117,7 +150,7 @@ export class Deck {
     return this.cards.pop();
   }
 
-  /*
+/*
 *  filter out all cards with value of num.
 */
   filterNum(num){
