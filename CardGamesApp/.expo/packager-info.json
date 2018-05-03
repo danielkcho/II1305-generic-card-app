@@ -1,8 +1,8 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 2113,
-  "expoServerNgrokUrl": "https://eq-vpg.kevin-ammouri.cardgamesapp.exp.direct",
-  "packagerNgrokUrl": "https://packager.eq-vpg.kevin-ammouri.cardgamesapp.exp.direct",
-  "ngrokPid": 2144
+  "packagerPid": 7982,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

@@ -27,7 +27,7 @@ componentWillMount() {
     onPanResponderGrant: (e, gestureState) => {
       this.state.pan.setOffset({x: this.state.pan.x._value, y: this.state.pan.y._value});
       this.state.pan.setValue({x: 0, y: 0});
-      this.state.depth.setValue(e.timeStamp);
+      this.state.depth.setValue((Math.floor(Date.now()/100))%2147483647);
     },
 
     // When we drag/pan the object, set the delate to the states pan position
@@ -43,7 +43,7 @@ componentWillMount() {
 }
 
 
-      constructor() {
+  constructor() {
     super();
 
     this.state = {
@@ -51,8 +51,9 @@ componentWillMount() {
         depth: new Animated.Value()
     };
 
-}
-    render(){
+  }
+
+  render(){
         // Destructure the value of pan from the state
   let { pan } = this.state;
 
@@ -62,10 +63,18 @@ componentWillMount() {
   // Calculate the transform property and set it as a value for our style which we add below to the Animated.View component
   let imageStyle = {zIndex: this.state.depth, height: 70.5, width:45, backgroundColor:'transparent',direction: 'ltr',position:'absolute',bottom: 70, alignItems: 'center',alignSelf:'baseline', transform: [{translateX}, {translateY}]};
        const {card} = this.props;
-        return(
-                <Animated.View style={imageStyle} {...this._panResponder.panHandlers}>
-                   {this.props.card.getFace()}
-                </Animated.View>
-        )
+       if (this.props.card.isFlipped()) {
+         return(
+                 <Animated.View style={imageStyle} {...this._panResponder.panHandlers}>
+                    {this.props.card.getBack()}
+                 </Animated.View>
+         )
+       } else {
+         return(
+                 <Animated.View style={imageStyle} {...this._panResponder.panHandlers}>
+                    {this.props.card.getFace()}
+                 </Animated.View>
+         )
+       }
     }
 }

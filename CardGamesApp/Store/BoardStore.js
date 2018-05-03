@@ -40,6 +40,17 @@ class BoardStore extends EventEmitter{
     this.emit("rChange");
   }
 
+/*
+* clears the board
+*/
+  clearBoard() {
+    this.cards = [];
+    this.emit("Change");
+    this.emit("rChange");
+  }
+/*
+* removes a card from the board
+*/
   removeCardFromBoard(card) {
     let i = 0;
     for (i = 0; i < this.cards.length; i++){
@@ -65,6 +76,10 @@ class BoardStore extends EventEmitter{
       }
       case "FROM_BOARD_TO_HAND": {
         this.removeCardFromBoard(action.card);
+        break;
+      }
+      case "CLEAR_ALL": {
+        this.clearBoard();
         break;
       }
       default:

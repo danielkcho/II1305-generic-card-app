@@ -83,7 +83,6 @@ export default class BoardScreen extends Component {
     </View>
    );
  }
-
 }
 
 const isPortrait = () => {

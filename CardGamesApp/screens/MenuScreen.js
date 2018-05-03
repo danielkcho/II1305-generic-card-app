@@ -21,6 +21,19 @@ export default class MenuScreen extends Component {
   }
 
   _menu = null;
+  _menuC = null;
+
+  setMenuCRef = ref => {
+    this._menuC = ref;
+  };
+
+  hideMenuC = () => {
+    this._menuC.hide();
+  };
+
+  showMenuC = () => {
+    this._menuC.show();
+  };
 
   setMenuRef = ref => {
     this._menu = ref;
@@ -52,7 +65,7 @@ export default class MenuScreen extends Component {
                     ref="toast"
                     style={{backgroundColor:'green'}}
                     position='top'
-                    positionValue={200}
+                    positionValue={250}
                     fadeInDuration={750}
                     fadeOutDuration={1000}
                     opacity={0.8}
@@ -64,9 +77,7 @@ export default class MenuScreen extends Component {
          ref={this.setMenuRef}
          button={<Text style ={{fontSize:20, color: 'green'}} onPress={this.showMenu}>Filter Deck</Text>}
        >
-         <MenuItem onPress={()=>{
-             this.showMenu();
-         }}>Less Than</MenuItem>
+         <MenuItem onPress={()=>{this.showMenu();}}>Less Than</MenuItem>
           <MenuDivider />
          <MenuItem onPress={this.hideMenu}>Equals To</MenuItem>
          <MenuDivider />
@@ -85,13 +96,35 @@ export default class MenuScreen extends Component {
         <Toast
                       ref="toast"
                       style={{backgroundColor:'green'}}
-                      position='top'
-                      positionValue={200}
+                      position='center'
+                      positionValue={250}
                       fadeInDuration={750}
                       fadeOutDuration={1000}
                       opacity={0.8}
                       textStyle={{color:'black'}}
           />
+
+          <Menu
+           ref={this.setMenuCRef}
+           button={<Text style ={{fontSize:20, color: 'green', paddingTop: 10}} onPress={this.showMenuC}>Clear board</Text>}
+         >
+           <MenuItem onPress={()=>
+             {this.hideMenuC();
+              Actions.clearAll();
+              this.refs.toast.show('Cleared & added a new Deck', DURATION.LENGTH_LONG);
+             }}>Confirm</MenuItem>
+         </Menu>
+
+          <Toast
+                        ref="toast"
+                        style={{backgroundColor:'green'}}
+                        position='center'
+                        positionValue={250}
+                        fadeInDuration={750}
+                        fadeOutDuration={1000}
+                        opacity={0.8}
+                        textStyle={{color:'black'}}
+            />
 
         <TouchableOpacity
             style={{paddingTop: 10}}
@@ -105,8 +138,8 @@ export default class MenuScreen extends Component {
         <Toast
                       ref="toast"
                       style={{backgroundColor:'green'}}
-                      position='top'
-                      positionValue={200}
+                      position='center'
+                      positionValue={250}
                       fadeInDuration={750}
                       fadeOutDuration={1000}
                       opacity={0.8}
@@ -133,8 +166,8 @@ export default class MenuScreen extends Component {
       <Toast
                     ref="toast"
                     style={{backgroundColor:'green'}}
-                    position='top'
-                    positionValue={200}
+                    position='center'
+                    positionValue={250}
                     fadeInDuration={750}
                     fadeOutDuration={1000}
                     opacity={0.8}

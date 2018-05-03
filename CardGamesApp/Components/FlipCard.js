@@ -9,6 +9,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as Actions from '../Actions/Actions';
 import {
+  Alert,
   View,
   TouchableOpacity,
   Animated,
@@ -171,24 +172,18 @@ export default class FlipCard extends Component{
           activeOpacity={1}
           onLongPress={() => {
             if(this.props.card.getStatus() == 'hand'){
-              if(this.state.isFlipped) {
-                let face = this.props.card.getFace();
-                let back = this.props.card.getBack();
-                this.props.card.setFace(back);
-                this.props.card.setBack(face);
-              }
-              else {
-
-              }
-
             Actions.addCardToBoard(this.props.card);
             Actions.fromHandToBoard(this.props.card);
             }
             else if(this.props.card.getStatus() == 'board') {
-              //When array mapping is fixed we can implment more stuff here and above
+              Actions.addCardToHand(this.props.card);
+              Actions.fromBoardToHand(this.props.card);
             }
           }}
-          onPress={() => {this._toggleCard(); }}
+          onPress={() => {
+            this._toggleCard();
+            this.props.card.flip();
+          }}
         >
           <Animated.View
             {...this.props}

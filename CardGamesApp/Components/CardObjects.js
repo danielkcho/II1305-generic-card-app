@@ -37,6 +37,9 @@ export class PlayingCard extends Card{
     this.ID = Math.random() + "-" + color + "-" + value;
     this.status = 'deck';
     this.change = false;
+    this.flipped = false;
+    this.posX = 0;
+    this.posY = 0;
   }
   //returns the face of the card.
   getFace(){
@@ -81,16 +84,31 @@ export class PlayingCard extends Card{
     return this.status;
   }
 
-  //method for knowing if the card has changed, meaning face -> back, back -> face.
-  isChanged() {
-    return this.change;
+  //See if the card is flipped
+  isFlipped() {
+    return this.flipped;
   }
 
-  //method for explaining that the change of face to back and vice versa has happened.
-  changed() {
-    this.change = !(this.change);
+  //When the card has been flipped, the variable in flip will change
+  flip() {
+    this.flipped = !(this.flipped);
   }
 
+  setPosX(pos) {
+    this.posX = pos;
+  }
+
+  setPosY(pos) {
+    this.posY = pos;
+  }
+
+  getPosX() {
+    return this.posX;
+  }
+
+  getPosY() {
+    return this.posY;
+  }
 
 }
 

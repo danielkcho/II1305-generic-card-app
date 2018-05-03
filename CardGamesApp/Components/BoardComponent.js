@@ -36,10 +36,7 @@ export class BoardComponent extends Component {
 
   }
 
-  /*******************************************************************************
-  * I will not comment on the code below until we change the method used, because
-  * this will not co-operate with drawing cards from hand to board and vice versa.
-  *******************************************************************************/
+
   render() {
 
     var isVisible = (this.state.faceUp.length > 0)? true : false;

@@ -24,6 +24,15 @@ class HandStore extends EventEmitter{
   getAll(){
     return this.faceUp;
   }
+/*
+* clears the hand
+*/
+
+  clearHand() {
+    this.faceUp = [];
+    this.emit("dChange");
+    this.emit("Change");
+  }
 
 /*
 * add a card to the array
@@ -62,6 +71,10 @@ class HandStore extends EventEmitter{
       }
       case "FROM_HAND_TO_BOARD": {
         this.removeCardFromHand(action.card);
+        break;
+      }
+      case "CLEAR_ALL": {
+        this.clearHand();
         break;
       }
       default:

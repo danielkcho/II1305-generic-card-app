@@ -7,7 +7,7 @@ import FlipCard from './FlipCard';
 import dispatcher from '../Dispatcher/Dispatcher';
 import * as Actions from '../Actions/Actions';
 import {cardifier, buildDeck} from '../functions/functions';
-import styles from '../assets/StyleSheets'
+import styles from '../assets/StyleSheets';
 
 export class HandComponent extends Component {
   constructor(props) {
@@ -55,7 +55,12 @@ export class HandComponent extends Component {
 
     if(isVisible){
       array = this.state.faceUp.map(function(num) {
-      return num.getFace()
+      if (num.isFlipped()) {
+        return num.getBack();
+      }
+      else {
+        return num.getFace();
+      }
     });
     }else{
       array = <View/>
