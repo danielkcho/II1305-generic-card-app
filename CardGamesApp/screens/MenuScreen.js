@@ -4,6 +4,9 @@ import * as Actions from '../Actions/Actions';
 import client from '../Multiplayer/Client';
 import server from '../Multiplayer/Server';
 import Dialog from 'react-native-dialog';
+import Toast, {DURATION} from 'react-native-easy-toast';
+import deckStore from '../Store/DeckStore';
+import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
 export default class MenuScreen extends Component {
   static navigationOptions = {
@@ -14,10 +17,30 @@ export default class MenuScreen extends Component {
 
     this.state = {
       dialogVisible: false,
-      ipAddress: "localhost"
+      ipAddress: "localhost",
+      getPress: false
     }
   }
 
+  renderMethod(){
+    this.setState({
+      state: this.state
+    })
+  }
+
+  _menu = null;
+
+  setMenuRef = ref => {
+    this._menu = ref;
+  };
+
+  hideMenu = () => {
+    this._menu = ref;
+  };
+
+  showmenu = () => {
+    this._menu.show();
+  };
 
   showDialog = () => {
     this.setState({dialogVisible: true});
@@ -36,40 +59,84 @@ export default class MenuScreen extends Component {
     Alert.alert("Connecting to %s", value);
   };
 
-  render() {
+render() {
+    if(deckStore.getPressed()){
     return(
-      <View style={{paddingTop: 20,justifyContent:'center',alignItems:'center'}}>
-        <Button
-          color='green'
-          onPress={
-            () =>{
+      <View style={{paddingTop: 20,paddingBottom: 20,justifyContent:'center',alignItems:'center'}}>
+      <TouchableOpacity
+          style={{padding: 10}}
+          onPress={()=>{
               Actions.createDeck();
-            Alert.alert('Created a deck');
-          }}
-          title='Create a deck'
+              this.renderMethod();
+              this.refs.toast.show('Deck Created', DURATION.LENGTH_LONG);
+          }}>
+          <Text style={{fontSize:20, color:'green'}}>Create a deck</Text>
+      </TouchableOpacity>
+      <Toast
+            ref="toast"
+            style={{backgroundColor:'green'}}
+            position='top'
+            positionValue={200}
+            fadeInDuration={750}
+            fadeOutDuration={1000}
+            opacity={0.8}
+            textStyle={{color:'black'}}
         />
-        <View style={{paddingTop: 20,justifyContent:'center',alignItems:'center'}}>
-        <Button
-          color='green'
-          onPress={
-            () =>{
-              Actions.shuffleDeck();
-              Alert.alert('Shuffled deck!');
-          }}
-          title='Shuffle Deck'
-        />
-      </View>
-      <View style={{paddingTop: 20,justifyContent:'center',alignItems:'center'}}>
-        <Button
-          color='green'
-          onPress={
-            () =>{
+
+
+        <Menu
+         ref={this.setMenuRef}
+         button={<Text style ={{fontSize:20, color: 'green'}} onPress={this.showMenu}>Filter Deck</Text>}
+       >
+         <MenuItem onPress={()=>{
+             this.showMenu();
+         }}>Less Than</MenuItem>
+          <MenuDivider />
+         <MenuItem onPress={this.hideMenu}>Equals To</MenuItem>
+         <MenuDivider />
+         <MenuItem onPress={this.hideMenu}>Greater Than</MenuItem>
+       </Menu>
+
+        <TouchableOpacity
+            style={{padding: 10,paddingBottom:1}}
+            onPress={()=>{
+                Actions.shuffleDeck();
+                this.state.getPress = true;
+                this.refs.toast.show('Deck Shuffled', DURATION.LENGTH_LONG);
+            }}>
+            <Text style={{fontSize:20, color:'green'}}>Shuffle deck</Text>
+        </TouchableOpacity>
+        <Toast
+              ref="toast"
+              style={{backgroundColor:'green'}}
+              position='top'
+              positionValue={200}
+              fadeInDuration={750}
+              fadeOutDuration={1000}
+              opacity={0.8}
+              textStyle={{color:'black'}}
+          />
+
+        <TouchableOpacity
+            style={{paddingTop: 10}}
+            onPress={()=>{
+              this.refs.toast.show('Joker Added', DURATION.LENGTH_LONG);
               Actions.createJoker();
-              Alert.alert('Added a joker to the deck!');
-          }}
-          title='Add joker'
-        />
-      </View>
+              this.renderMethod();
+            }}>
+            <Text style={{fontSize:20, color:'green'}}>Add Joker</Text>
+        </TouchableOpacity>
+        <Toast
+            ref="toast"
+            style={{backgroundColor:'green'}}
+            position='top'
+            positionValue={200}
+            fadeInDuration={750}
+            fadeOutDuration={1000}
+            opacity={0.8}
+            textStyle={{color:'black'}}
+          />
+        <Text> {deckStore.getJokerC()} </Text>
       <View>
         <Dialog.Container visible={this.state.dialogVisible}>
           <Dialog.Title>Connect to a device</Dialog.Title>
@@ -86,7 +153,62 @@ export default class MenuScreen extends Component {
           }/>
         </Dialog.Container>
         </View>
-      <View style = {{paddingTop: 20, justifyContent: 'center', alignItems: 'center'}}>
+      <View style = {{paddingTop: 80, justifyContent: 'center', alignItems: 'center'}}>
+      <TouchableOpacity
+      onPress = {
+        () => {
+          this.setState({
+            dialogVisible: true
+          });
+        }}>
+        <Text style={{fontSize:20, color:'green'}}>Connect Device</Text>
+      </TouchableOpacity>
+      <View><Text> {this.state.ipAddress} </Text></View>
+      </View>
+      </View>
+
+    )
+  }
+  else {
+    return(
+      <View style={{paddingTop: 20,justifyContent:'center',alignItems:'center'}}>
+
+      <TouchableOpacity
+          style={{padding: 1}}
+          onPress={()=>{
+              this.refs.toast.show('Deck Created', DURATION.LENGTH_LONG);
+              Actions.createDeck();
+              this.renderMethod();
+          }}>
+          <Text style={{fontSize:20, color:'green'}}>Create a deck</Text>
+      </TouchableOpacity>
+      <Toast
+          ref="toast"
+          style={{backgroundColor:'green'}}
+          position='top'
+          positionValue={200}
+          fadeInDuration={750}
+          fadeOutDuration={1000}
+          opacity={0.8}
+          textStyle={{color:'black'}}
+        />
+             <View>
+        <Dialog.Container visible={this.state.dialogVisible}>
+          <Dialog.Title>Connect to a device</Dialog.Title>
+          <Dialog.Description>
+            Provide an IP address
+          </Dialog.Description>
+          <View><TextInput onChangeText = {(ipAddress) => this.setState({ipAddress})}></TextInput></View>
+          <Dialog.Button label="Cancel" />
+          <Dialog.Button label="Submit" 
+            onPress = {
+            () => {
+              this.handleSubmit(this.state.ipAddress);
+            }
+          }/>
+        </Dialog.Container>
+        </View>
+      <View style = {{paddingTop: 80, justifyContent: 'center', alignItems: 'center'}}>
       <Button 
       color = 'green' 
       onPress = {
@@ -101,5 +223,7 @@ export default class MenuScreen extends Component {
       </View>
       </View>
     )
+
+  }
   }
 }

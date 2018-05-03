@@ -18,6 +18,7 @@ var net = require("net");
 var serverPort = 9000;
 
 var server = net.createServer((socket) => {
+      Alert.alert(socket.address().address);
       Actions.addPlayer(new Player("player 1"));
 
       socket.on('data', (data) => {
@@ -32,7 +33,7 @@ var server = net.createServer((socket) => {
         Alert.alert('Server client closed ' + (error ? error : ''));
       });
 }).listen(serverPort, () => {
-      Alert.alert('Opened server on port 9000');
+      Alert.alert('Opened server on: ' + server.address().address);
 });
 
 export default server;

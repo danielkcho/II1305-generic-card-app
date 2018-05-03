@@ -13,6 +13,7 @@ class DeckStore extends EventEmitter{
   constructor(){
     super();
     deck = [];
+    this.state = {deckPress: false, jokerCount: 0};
   }
 
 //return all cards in deck
@@ -20,10 +21,19 @@ class DeckStore extends EventEmitter{
     return this.deck;
   }
 
+  getPressed(){
+    return this.state.deckPress;
+  }
+
+  getJokerC() {
+    return this.state.jokerCount;
+  }
+
 //Create a deck
   createDeck(){
     this.deck = buildDeck(new Deck());
     this.emit("dChange");
+    this.state.deckPress = true;
   }
 
 //return top card of deck
@@ -34,6 +44,7 @@ class DeckStore extends EventEmitter{
 
   createJoker() {
     this.deck.push(cardifier(new PlayingCard(1,1,0,0)));
+    this.state.jokerCount++;
   }
 
 //shuffle deck
