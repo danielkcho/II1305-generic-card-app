@@ -19,11 +19,11 @@ to be hacked in with ```diff + rn-nodeify ```
 
 After all of the commands above, make sure to add the following to package.json
 
-### `{
+{
   "browser": {
     "net": "react-native-tcp"
   }
-}`
+}
 
 -----------------------------------------------------------------------------------------------------------------------
 
