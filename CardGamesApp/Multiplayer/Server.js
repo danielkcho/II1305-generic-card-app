@@ -5,7 +5,7 @@ import styles from '../assets/StyleSheets'
 import FlipCard from '../Components/FlipCard';
 import {HandComponent} from '../Components/HandComponent';
 import {DeckComponent} from '../Components/DeckComponent';
-import {cardifier, buildDeck} from '../functions/functions';
+import {cardifier, buildDeck, jsonparser} from '../functions/functions';
 import {PlayingCard, Deck, Card} from '../Components/CardObjects';
 import {BoardComponent} from '../Components/BoardComponent';
 import handStore from '../Store/HandStore'
@@ -23,7 +23,9 @@ var server = net.createServer((socket) => {
 
       socket.on('data', (data) => {
         // Actions.addCardToBoard(cardifier(new PlayingCard(1,1,1,14)));
-        dispatcher.dispatch(data);
+        json = JSON.parse(data);
+        payload = jsonparser(json);
+        dispatcher.dispatch(payload);
       });
 
       /*socket.on('error', (error) => {

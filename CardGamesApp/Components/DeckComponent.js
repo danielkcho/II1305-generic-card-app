@@ -21,8 +21,15 @@ export class DeckComponent extends Component {
   }
 
   onPress = () => {
+
+/*
+*   So this following code is to try to send JSON strings
+*/
     card = cardifier(new PlayingCard(1,1,2,13));
-    this.client.write({type: "ADD_CARD_TO_BOARD", card,});
+    jsoncard = JSON.stringify(card);
+    payload = {type: "ADD_CARD_TO_BOARD", jsoncard,};
+    jsonpayload = JSON.stringify(payload);
+    client.write(jsonpayload);
     this.addCardToHand();
   }
 
