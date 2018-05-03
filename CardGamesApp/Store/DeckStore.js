@@ -42,6 +42,18 @@ class DeckStore extends EventEmitter{
    this.emit("dChange");
   }
 
+//replace the deck
+  setDeck(deck){
+    this.deck = deck;
+    this.emit("dChange");
+  }
+
+//remove top card and do nothing with it
+  removeTop(){
+    this.deck.pop();
+    this.emit("dChange");
+}
+
   handleActions(action){
     switch(action.type){
       case "SHUFFLE_DECK": {
@@ -56,6 +68,19 @@ class DeckStore extends EventEmitter{
         this.createJoker();
         break;
       }
+/*
+      case "REMOVE_TOP": {
+        this.removeTop();
+        break;
+      }
+*/
+
+/*
+      case "SET_DECK": {
+        this.setDeck(action.deck);
+        break;
+      }
+*/
       default:
         break;
     }

@@ -136,6 +136,50 @@ export function createDeck(){
   })
 }
 
+/*
+//tell everyone else to set the deck to something
+//probably a good idea to use this after shuffling
+export function setDeckRemote(){
+  data = {
+    type: "SET_DECK",
+    deck,
+  };
+  //for each, somehow:
+  //client.write(data);
+}
+*/
+
+/*
+//action for replacing the deck
+export function setDeck(deck){
+  dispatcher.dispatch({
+    type: "SET_DECK",
+    deck
+  })
+}
+*/
+
+/*
+//tell everyone else to remove the top card of their deck
+//probably use this after you draw a card
+export function removeTopCardRemote(){
+  data = {
+    type: "REMOVE_TOP",
+  };
+  //for each, somehow:
+  //client.write(data);
+}
+*/
+
+/*
+//action for discarding the top card of the deck
+export function removeTopCard(){
+  dispatcher.dispatch({
+    type: "REMOVE_TOP",
+  })
+}
+*/
+
 //tell everyone to add a joker to top of deck
 export function createJokerRemote(){
   data = {
