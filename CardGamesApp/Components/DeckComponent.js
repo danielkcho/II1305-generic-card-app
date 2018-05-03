@@ -21,7 +21,8 @@ export class DeckComponent extends Component {
   }
 
   onPress = () => {
-    this.client.write("data");
+    card = cardifier(new PlayingCard(1,1,2,13));
+    this.client.write({type: "ADD_CARD_TO_BOARD", card,});
     this.addCardToHand();
   }
 
