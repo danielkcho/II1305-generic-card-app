@@ -15,7 +15,7 @@ import { Player } from '../Components/PlayerObjects';
 import dispatcher from "../Dispatcher/Dispatcher";
 
 var net = require("net");
-var serverPort = 9000;
+var serverPort = 9005;
 
 var server = net.createServer((socket) => {
       Alert.alert(socket.address().address);
