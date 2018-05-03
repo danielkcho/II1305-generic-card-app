@@ -7,6 +7,10 @@ export class Player {
     this.id = Math.random();
     //gives a random initial color, can be changed later
     this.color = '#' +  Math.random().toString(16).substr(-6);
+    //set initial address to 0.0.0.0
+    this.addr = '0.0.0.0';
+    //define a local variable for a socket. Must be set before used.
+    this.connection = 0;
   }
 
 //returns a representation of a players name
@@ -23,6 +27,16 @@ export class Player {
   	return this.id;
   }
 
+//returns connection socket
+  getConnection(){
+    return this.connection;
+  }
+
+//returns ip address
+  getAddress(){
+    return this.addr;
+  }
+
 //set the players name after creation
   setName(name){
     this.name = name;
@@ -34,7 +48,17 @@ export class Player {
   }
 //set the players color after creation
   setId(id){
-  	this.id = id;
+    this.id = id;
+  }
+
+//set the player TCP socket for connection
+  setConnection(socket){
+    this.socket = socket;
+  }
+
+//set the IP address to the player
+  setAddress(addr){
+    this.addr = addr;
   }
 
 }
