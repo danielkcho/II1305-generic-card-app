@@ -5,25 +5,27 @@ Below you'll find information about performing common tasks. The most recent ver
 ## BE ADVISED
 You need to run these commands in order for the ejected project to work:
 
-### `npm install react-native-tcp --save`
+### npm install react-native-tcp --save`
 
 After the command above, you need to link the library which is done by the following command:
 
 ### `react-native link react-native-tcp`
 
 Now you need to add additional dependencies. Due to the limitations in the react-native packager, streams needs
-to be hacked in with ```diff + rn-nodeify ```
+to be hacked in with rn-nodeify.
 
 ### `npm install --save-dev rn-nodeify`
 ### `rn-nodeify --install stream,process,util --hack`
 
 After all of the commands above, make sure to add the following to package.json
 
+```
 {
   "browser": {
     "net": "react-native-tcp"
   }
 }
+```
 
 -----------------------------------------------------------------------------------------------------------------------
 
