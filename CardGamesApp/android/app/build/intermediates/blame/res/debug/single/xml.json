@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/Cho/Desktop/generic-card-app/CardGamesApp/android/app/build/intermediates/res/merged/debug/xml/preferences.xml",
+        "source": "/Users/Cho/Desktop/generic-card-app/CardGamesApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.54.4/res/xml/preferences.xml"
+    },
+    {
         "merged": "/Users/Cho/Desktop/generic-card-app/tcpTest/android/app/build/intermediates/res/merged/debug/xml/preferences.xml",
         "source": "/Users/Cho/Desktop/generic-card-app/tcpTest/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.54.4/res/xml/preferences.xml"
     },

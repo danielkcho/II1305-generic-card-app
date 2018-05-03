@@ -4,6 +4,10 @@
         "source": "/Users/Cho/Desktop/generic-card-app/tcpTest/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
+        "merged": "/Users/Cho/Desktop/generic-card-app/CardGamesApp/android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/Users/Cho/Desktop/generic-card-app/CardGamesApp/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/Cho/Desktop/tcpTest/android/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
         "source": "/Users/Cho/Desktop/tcpTest/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     }
