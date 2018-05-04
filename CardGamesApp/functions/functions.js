@@ -145,6 +145,54 @@ export function specialkvMapper(deck){
   return output;
 }
 
+//function for encoding our messages as JSON strings that can be
+//bascally reversed by jsonparser(output).
+export function jsonifier(dispatch, argtype){
+  type = dispatch.type;
+
+  switch(argtype){
+    case "CARD": {
+      card = dispatch.card;
+      jsoncard = JSON.stringify(card);
+      payload = {
+        type: type, argType: argtype, arg: jsoncard,
+      }
+      output = JSON.stringify(payload);
+      return output;
+    }
+    case "DECK": {
+      deck = dispatch.deck;
+      jsondeck = JSON.stringify(deck);
+      payload = {
+        type: type, argType: argtype, arg: jsondeck,
+      }
+      output = JSON.stringify(payload);
+      return output;
+    }
+    case "PLAYER": {
+      player = dispatch.player;
+      jsonplayer = JSON.stringify(player);
+      payload = {
+        type: type, argType: argtype, arg: jsonplayer,
+      }
+      output = JSON.stringify(payload);
+      return output;
+    }
+    case "NIL": {
+      payload = {
+        type: type, argType: argtype,
+      }
+      output = JSON.stringify(payload);
+      return output;
+    }
+    default:
+      break;
+  }
+}
+
+//parses a json payload that we send over TCP. Function to
+//automatically encode our messages in accordance to the
+//requirements of this function to come.
 export function jsonparser(json){
   type = json.type;
 
