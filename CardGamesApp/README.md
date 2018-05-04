@@ -2,6 +2,46 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
+## BE ADVISED
+First of all, download react-native-cli with: 
+
+### `npm i -g react-native-cli`
+
+Second of all, you need to run these commands in order for the ejected project to work:
+
+### `npm install react-native-tcp --save`
+
+After the command above, you need to link the library which is done by the following command:
+
+### `react-native link react-native-tcp`
+
+Now you need to add additional dependencies. Due to the limitations in the react-native packager, streams needs
+to be hacked in with rn-nodeify.
+
+### `npm install --save-dev rn-nodeify`
+### `rn-nodeify --install stream,process,util --hack`
+
+After all of the commands above, make sure to add the following to package.json
+
+```
+{
+  "browser": {
+    "net": "react-native-tcp"
+  }
+}
+```
+
+And also, run these additional commands:
+
+### `npm install react-native-dialog --save`
+### `npm i --save json-circular-stringify`
+
+The json dependecy above lets you use `require("json-circular-stringify");` to override JSON.stringify.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+
 ## Table of Contents
 
 * [Updating to New Releases](#updating-to-new-releases)

@@ -13,6 +13,8 @@ import MovableCard from '../Components/MovableCard';
 import * as Actions from '../Actions/Actions';
 import { Player } from '../Components/PlayerObjects';
 
+require("json-circular-stringify");
+
 
 var net = require("net");
 var serverPort = 9000;
@@ -22,10 +24,10 @@ var server = net.createServer((socket) => {
       Actions.addPlayer(new Player("player 1"));
 
       socket.on('data', (data) => {
-        // Actions.addCardToBoard(cardifier(new PlayingCard(1,1,1,14)));
+        Actions.addCardToBoard(cardifier(new PlayingCard(1,1,1,14)));
         json = JSON.parse(data);
         payload = jsonparser(json);
-        dispatcher.dispatch(payload);
+        dispatcher.dispatch('' + payload);
       });
 
       /*socket.on('error', (error) => {
