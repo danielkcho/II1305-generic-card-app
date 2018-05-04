@@ -8,7 +8,7 @@ import {PlayingCard, Deck, Card} from '../Components/CardObjects';
 
 require("json-circular-stringify");
 
-export function cardifier(playingCard) {
+export function cardifier(playingCard, face) {
   var i = 0;
   var num = playingCard.getValue();
   var sign = 0;
@@ -65,11 +65,20 @@ export function cardifier(playingCard) {
   </View>
   </FlipCard>
 
-  playingCard.setFace(frontCardStyle);
+  if(face == 'front'){
+    return frontCardStyle;
+  }
+  else if(face == 'back'){
+    return backCardStyle;
+  }else{
+    return <View />
+  }
 
-  playingCard.setBack(backCardStyle);
+  //playingCard.setFace(frontCardStyle);
 
-  return playingCard;
+  //playingCard.setBack(backCardStyle);
+
+  //return playingCard;
 }
 
 export function buildDeck(deck){
@@ -79,7 +88,7 @@ export function buildDeck(deck){
   let j = 0;
   for(i = 2; i<15; i++){
     for(j = 1; j<5; j++){
-     deck.push(cardifier(new PlayingCard(1,1,j,i)));
+     deck.push(new PlayingCard(1,1,j,i));
     }
   }
   return deck;

@@ -6,11 +6,12 @@ import FlipCard from './FlipCard';
 import dispatcher from '../Dispatcher/Dispatcher';
 import * as Actions from '../Actions/Actions';
 import styles from '../assets/StyleSheets'
-import {cardifier, buildDeck} from '../functions/functions';
+import {cardifier, buildDeck, jsonifier} from '../functions/functions';
 import {PlayingCard, Deck, Card} from './CardObjects';
 import deckStore from '../Store/DeckStore';
 import MovableCard from '../Components/MovableCard';
 import client from '../Multiplayer/Client';
+
 
 require("json-circular-stringify");
 
@@ -29,15 +30,18 @@ export class DeckComponent extends Component {
   }
 
   onPress = () => {
+    card = new PlayingCard(1,1,2,13);
+    var temp = {type: "ADD_CARD_TO_BOARD", card,}
+    var jsonified = jsonifier(temp, "CARD");
+
 
 /*
 *   So this following code is to try to send JSON strings
 */
-    card = cardifier(new PlayingCard(1,1,2,13));
     jsoncard = JSON.stringify(card);
     payload = {type: "ADD_CARD_TO_BOARD", argType: "CARD", arg: jsoncard,};
     jsonpayload = JSON.stringify(payload);
-    client.write(jsonpayload);
+    client.write(jsonified);
     this.addCardToHand();
   }
 

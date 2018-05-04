@@ -37,7 +37,10 @@ export class BoardComponent extends Component {
 
     if(isVisible){
       array = this.state.faceUp.map(function(num) {
+      if (num == null) {}
+      else {
       return <MovableCard card = {num}></MovableCard>
+      }
     });
     }else{
       array = <View />
