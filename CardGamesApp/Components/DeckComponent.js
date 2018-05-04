@@ -24,25 +24,20 @@ export class DeckComponent extends Component {
   }
 
   onLongPress = () => {
-    cardToSend = deckStore.pop();
-    cardToSend.flip();
-    Actions.addCardToBoard(cardToSend);
+
+    card = deckStore.pop();
+    Actions.removeTopCardRemote();
+    card.flip();
+    //var temp = {type: "ADD_CARD_TO_BOARD", card,}
+    //var jsonifiedTwo = jsonifier(temp, "CARD")
+    Actions.addCardToBoardRemote(card);
+    //client.write(jsonifiedTwo);
+    
   }
 
   onPress = () => {
-    card = new PlayingCard(1,1,2,13);
-    var temp = {type: "ADD_CARD_TO_BOARD", card,}
-    var jsonified = jsonifier(temp, "CARD");
-
-
-/*
-*   So this following code is to try to send JSON strings
-*/
-    jsoncard = JSON.stringify(card);
-    payload = {type: "ADD_CARD_TO_BOARD", argType: "CARD", arg: jsoncard,};
-    jsonpayload = JSON.stringify(payload);
-    client.write(jsonified);
     this.addCardToHand();
+    Actions.removeTopCardRemote();
   }
 
   componentWillMount(){
@@ -58,7 +53,10 @@ export class DeckComponent extends Component {
   }
 
   addCardToHand(){
-    Actions.addCardToHand(deckStore.pop());
+    
+    card = deckStore.pop();
+    Actions.addCardToHand(card);
+
   }
 
   render() {

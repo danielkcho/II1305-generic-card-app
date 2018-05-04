@@ -27,7 +27,7 @@ var server = net.createServer((socket) => {
       socket.on('data', (data) => {
         json = JSON.parse(data);
         payload = jsonparser(json);
-        Actions.addCardToBoard(payload.card);
+        dispatcher.dispatch(payload);
       });
 
       /*socket.on('error', (error) => {

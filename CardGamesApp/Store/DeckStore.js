@@ -90,19 +90,14 @@ class DeckStore extends EventEmitter{
         this.clearDeck();
         break;
       }
-/*
       case "REMOVE_TOP": {
         this.removeTop();
         break;
       }
-*/
-
-/*
       case "SET_DECK": {
         this.setDeck(action.deck);
         break;
       }
-*/
       default:
         break;
     }
