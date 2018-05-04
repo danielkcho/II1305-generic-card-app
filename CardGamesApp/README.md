@@ -18,6 +18,7 @@ After the command above, you need to link the library which is done by the follo
 Now you need to add additional dependencies. Due to the limitations in the react-native packager, streams needs
 to be hacked in with rn-nodeify.
 
+### `npm i -g react-native-cli`
 ### `npm install --save-dev rn-nodeify`
 ### `rn-nodeify --install stream,process,util --hack`
 
