@@ -3,7 +3,11 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
 ## BE ADVISED
-You need to run these commands in order for the ejected project to work:
+First of all, download react-native-cli with: 
+
+### `npm i -g react-native-cli`
+
+Second of all, you need to run these commands in order for the ejected project to work:
 
 ### `npm install react-native-tcp --save`
 
