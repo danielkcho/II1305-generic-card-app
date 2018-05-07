@@ -7,6 +7,9 @@ import Dialog from 'react-native-dialog';
 import Toast, {DURATION} from 'react-native-easy-toast';
 import deckStore from '../Store/DeckStore';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
+import { Player } from '../Components/PlayerObjects';
+import {cardifier, buildDeck, jsonifier} from '../functions/functions';
+
 var net = require("net");
 
 export default class MenuScreen extends Component {
@@ -70,17 +73,27 @@ export default class MenuScreen extends Component {
     });
     if(net.isIP(value) == 0 && value != "localhost"){
       Alert.alert("Not a valid IP address");
-      break;
+      return;
     }
 
     //client.connect(9000, value);
     socket = new net.Socket();
+
+    
+    /*socket.on('data', (data) => {
+      Alert.alert('Client received: ' + data);
+    });
+
+    socket.on('close', () => {
+      Alert.alert("Client closed!");
+    });
+    */
     socket.connect(9000, value);
     player = new Player("player 1");
     player.setAddress(value);
     player.setConnection(socket);
     Actions.addPlayer(player);
-    Alert.alert("Connecting to %s", value);
+    //Alert.alert("Connecting to %s", value);
   };
 
 render() {

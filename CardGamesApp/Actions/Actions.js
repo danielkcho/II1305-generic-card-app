@@ -13,6 +13,8 @@ import MovableCard from '../Components/MovableCard';
 import client from '../Multiplayer/Client';
 import playerStore from '../Store/PlayerStore';
 
+var net = require("net");
+
 //a function used to write to all connected sockets
 function sendToAll(data){
   temp = playerStore.getAll();

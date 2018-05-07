@@ -1,10 +1,12 @@
 import { EventEmitter } from 'events';
 import dispatcher from '../Dispatcher/Dispatcher';
+import {Player} from '../Components/PlayerObjects';
 //class for storing all players
 class PlayerStore extends EventEmitter{
   constructor(){
     super();
     this.players = [];
+    this.me = new Player("me");
   }
 // returns list of players
   getAll(){
@@ -24,6 +26,16 @@ class PlayerStore extends EventEmitter{
       }
     }
     this.emit("Change");
+  }
+
+  containsAddress(ip) {
+    let i;
+    for (i = 0; i < this.players.length; i++) {
+      if(this.players[i].getAddress() == ip) {
+        return true;
+      }
+    }
+    return false;
   }
 
   handleActions(action){

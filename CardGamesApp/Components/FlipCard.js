@@ -174,8 +174,10 @@ export default class FlipCard extends Component{
             }
           }}
           onPress={() => {
-            this._toggleCard(); 
+            this._toggleCard();
             this.props.card.flip();
+            Actions.removeCardFromBoardRemote(this.props.card);
+            Actions.addCardToBoardRemote(this.props.card);
           }}
         >
           <Animated.View
