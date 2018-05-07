@@ -14,6 +14,11 @@ class PlayerStore extends EventEmitter{
   getAll(){
     return this.players;
   }
+
+  getMe(){
+    return this.me;
+  }
+
 //adding a player
   addPlayer(player){
     this.players.push(player);

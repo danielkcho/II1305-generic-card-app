@@ -9,6 +9,7 @@ import deckStore from '../Store/DeckStore';
 import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import { Player } from '../Components/PlayerObjects';
 import {cardifier, buildDeck, jsonifier} from '../functions/functions';
+import playerStore from '../Store/PlayerStore';
 
 var net = require("net");
 
@@ -79,7 +80,6 @@ export default class MenuScreen extends Component {
     //client.connect(9000, value);
     socket = new net.Socket();
 
-    
     /*socket.on('data', (data) => {
       Alert.alert('Client received: ' + data);
     });
@@ -93,6 +93,7 @@ export default class MenuScreen extends Component {
     player.setAddress(value);
     player.setConnection(socket);
     Actions.addPlayer(player);
+    Actions.addPlayerRemote(playerStore.getMe());
     //Alert.alert("Connecting to %s", value);
   };
 
