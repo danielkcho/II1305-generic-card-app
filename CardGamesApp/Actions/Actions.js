@@ -11,6 +11,16 @@ import {PlayingCard, Deck, Card} from '../Components/CardObjects';
 import deckStore from '../Store/DeckStore';
 import MovableCard from '../Components/MovableCard';
 import client from '../Multiplayer/Client';
+import playerStore from '../Store/PlayerStore';
+
+//a function used to write to all connected sockets
+function sendToAll(data){
+  temp = playerStore.getAll();
+  for(i = 0; i<temp.length; i++){
+    socket = temp[i].getConnection();
+    socket.write(data);
+  }
+}
 
 //sample action for adding cards to hand
 export function addCardToHand(card){
@@ -43,7 +53,8 @@ export function shuffleDeckRemote(){
     arg: i,
   }
   dispatcher.dispatch(data);
-  client.write(jsonifier(data, "ARG"));
+
+  sendToAll(jsonifier(data, "ARG"));
 }
 
 //tellign everyone that you are filtering out cards
@@ -73,7 +84,7 @@ export function addCardToBoardRemote(card){
   }
   jsonifiedTwo = jsonifier(data, "CARD");
   dispatcher.dispatch(data);
-  client.write(jsonifiedTwo);
+  sendToAll(jsonifiedTwo);
 }
 
 
@@ -93,7 +104,7 @@ export function removeCardFromBoardRemote(card){
     card,
   }
   dispatcher.dispatch(data);
-  client.write(jsonifier(data, "CARD"));
+  sendToAll(jsonifier(data, "CARD"));
 }
 
 
@@ -149,7 +160,7 @@ export function createDeckRemote(){
     type: "CREATE_DECK",
   }
   dispatcher.dispatch(data);
-  client.write(jsonifier(data, "NIL"));
+  sendToAll(jsonifier(data, "NIL"));
 }
 
 //action for creating deck
@@ -192,7 +203,7 @@ export function removeTopCardRemote(){
     type: "REMOVE_TOP",
   };
 
-  client.write(jsonifier(data, "NIL"));
+  sendToAll(jsonifier(data, "NIL"));
 }
 
 
@@ -211,7 +222,7 @@ export function createJokerRemote(){
     type: "ADD_JOKER",
   }
   dispatcher.dispatch(data);
-  client.write(jsonifier(data, "NIL"));
+  sendToAll(jsonifier(data, "NIL"));
 }
 
 //action for adding joker to top of deck
@@ -253,6 +264,7 @@ export function removePlayer(id){
   })
 }
 
+//action for clearing the board
 export function clearAll(){
   dispatcher.dispatch({
     type: "CLEAR_ALL",

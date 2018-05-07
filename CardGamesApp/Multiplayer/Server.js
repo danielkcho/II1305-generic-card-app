@@ -22,7 +22,7 @@ var serverPort = 9000
 
 var server = net.createServer((socket) => {
       Alert.alert(socket.address().address);
-      Actions.addPlayer(new Player("player 1"));
+      //Actions.addPlayer(new Player("player 1"));
 
       socket.on('data', (data) => {
         json = JSON.parse(data);
