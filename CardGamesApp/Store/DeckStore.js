@@ -55,8 +55,8 @@ class DeckStore extends EventEmitter{
   }
 
 //shuffle deck
-  shuffle(){
-   this.deck.shuffle();
+  shuffle(i){
+   this.deck.shuffle(i);
    this.emit("dChange");
   }
 
@@ -75,7 +75,7 @@ class DeckStore extends EventEmitter{
   handleActions(action){
     switch(action.type){
       case "SHUFFLE_DECK": {
-        this.shuffle();
+        this.shuffle(action.arg);
         break;
       }
       case "CREATE_DECK": {

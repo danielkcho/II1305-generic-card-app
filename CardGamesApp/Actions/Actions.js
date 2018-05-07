@@ -29,10 +29,21 @@ export function removeCardFromHand(card){
 }
 
 //action for shuffling deck
-export function shuffleDeck(){
+export function shuffleDeck(i){
   dispatcher.dispatch({
     type: "SHUFFLE_DECK",
+    arg: i,
   })
+}
+
+export function shuffleDeckRemote(){
+  i = Math.random();
+  data = {
+    type: "SHUFFLE_DECK",
+    arg: i,
+  }
+  dispatcher.dispatch(data);
+  client.write(jsonifier(data, "ARG"));
 }
 
 //tellign everyone that you are filtering out cards

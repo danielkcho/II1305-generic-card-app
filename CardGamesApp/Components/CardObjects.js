@@ -1,3 +1,4 @@
+import {seed, random} from '../functions/function';
 import {Alert} from 'react-native';
 //class for handling generic cards
 export class Card {
@@ -141,10 +142,13 @@ export class Deck {
   }
 
 //shuffle the deck
-  shuffle(){
+//I added a PRNG so that we can just send the seed to the
+//shuffle function and get the same result on all devices
+  shuffle(i){
+    seed(i);
     var i;
     for(i = 0; i<this.cards.length; i++){
-      var x = Math.ceil((Math.random()*(this.cards.length-i))) +i;
+      var x = Math.ceil((random()*(this.cards.length-i))) +i;
       var temp = this.cards[i];
       this.cards[i] = this.cards[x-1];
       this.cards[x-1] = temp;

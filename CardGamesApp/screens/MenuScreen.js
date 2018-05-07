@@ -111,7 +111,7 @@ render() {
         <TouchableOpacity
             style={{padding: 10,paddingBottom:1}}
             onPress={()=>{
-                Actions.shuffleDeck();
+                Actions.shuffleDeckRemote();
                 this.state.getPress = true;
                 this.refs.toast.show('Deck Shuffled', DURATION.LENGTH_LONG);
             }}>

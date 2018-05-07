@@ -190,6 +190,13 @@ export function jsonifier(dispatch, argtype){
       output = JSON.stringify(payload);
       return output;
     }
+    case "ARG": {
+      payload = {
+        type: type, argType: argtype, arg: dispatch.arg,
+      }
+      output = JSON.stringify(payload);
+      return output;
+    }
     case "NIL": {
       payload = {
         type: type, argType: argtype,
@@ -235,6 +242,12 @@ export function jsonparser(json){
       player,
       }
       return output;
+    }
+    case "ARG": {
+      output = {
+      type: type,
+      arg: json.arg,
+      }
     }
     case "NIL": {
       output = {
