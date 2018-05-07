@@ -67,7 +67,6 @@ export class Player {
     this.id = json.id;
     this.color = json.color;
     this.addr = json.addr;
-    this.connection = json.connection;
   }
 
 }
