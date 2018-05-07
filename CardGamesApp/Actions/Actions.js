@@ -250,6 +250,15 @@ export function fromBoardToHand(card) {
   })
 }
 
+//action for telling others to add a player
+export function addPlayerRemote(player){
+  data = {
+    type: "ADD_PLAYER_REMOTE",
+    player,
+  };
+  sendToAll(jsonifier(data, "PLAYER"));
+}
+
 //action for adding a new player
 export function addPlayer(player){
   dispatcher.dispatch({
