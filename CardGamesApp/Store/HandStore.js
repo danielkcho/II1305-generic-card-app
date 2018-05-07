@@ -65,7 +65,7 @@ class HandStore extends EventEmitter{
         this.addCardToHand(action.card);
         break;
       }
-      case "FROM_HAND_TO_BOARD": {
+      case "REMOVE_CARD_FROM_HAND": {
         this.removeCardFromHand(action.card);
         break;
       }

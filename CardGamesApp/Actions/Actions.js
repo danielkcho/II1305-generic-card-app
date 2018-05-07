@@ -21,10 +21,10 @@ export function addCardToHand(card){
 }
 
 //sample action for removing cards from hand
-export function removeCardFromHand(id){
+export function removeCardFromHand(card){
   dispatcher.dispatch({
     type: "REMOVE_CARD_FROM_HAND",
-    id,
+    card,
   })
 }
 
@@ -65,6 +65,8 @@ export function addCardToBoardRemote(card){
   client.write(jsonifiedTwo);
 }
 
+
+
 //action for adding cards to board
 export function addCardToBoard(card){
   dispatcher.dispatch({
@@ -74,21 +76,21 @@ export function addCardToBoard(card){
 }
 
 //use this when you are the actor
-export function removeCardFromBoardRemote(id){
+export function removeCardFromBoardRemote(card){
   data = {
     type: "REMOVE_CARD_FROM_BOARD",
-    id,
+    card,
   }
   dispatcher.dispatch(data);
-  //for each, somehow:
-  //client.write(data);
+  client.write(jsonifier(data, "CARD"));
 }
 
+
 //action for removing cards from board
-export function removeCardFromBoard(id){
+export function removeCardFromBoard(card){
   dispatcher.dispatch({
     type: "REMOVE_CARD_FROM_BOARD",
-    id,
+    card,
   })
 }
 
@@ -196,10 +198,9 @@ export function removeTopCard(){
 export function createJokerRemote(){
   data = {
     type: "ADD_JOKER",
-  };
+  }
   dispatcher.dispatch(data);
-  //for each, somehow:
-  //client.write(data);
+  client.write(jsonifier(data, "NIL"));
 }
 
 //action for adding joker to top of deck

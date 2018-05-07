@@ -50,7 +50,7 @@ class DeckStore extends EventEmitter{
   }
 
   createJoker() {
-    this.deck.push(cardifier(new PlayingCard(1,1,0,0)));
+    this.deck.push(new PlayingCard(1,1,0,0));
     this.state.jokerCount++;
   }
 

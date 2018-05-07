@@ -164,12 +164,13 @@ export default class FlipCard extends Component{
           activeOpacity={1}
           onLongPress={() => {
             if(this.props.card.getStatus() == 'hand'){
-              Actions.addCardToBoard(this.props.card);
-              Actions.fromHandToBoard(this.props.card); 
+              Actions.addCardToBoardRemote(this.props.card);
+              Actions.removeCardFromHand(this.props.card); 
             }
             else if(this.props.card.getStatus() == 'board') {
               Actions.addCardToHand(this.props.card);
-              Actions.fromBoardToHand(this.props.card);
+              Actions.removeCardFromBoard(this.props.card);
+              Actions.removeCardFromBoardRemote(this.props.card);
             }
           }}
           onPress={() => {

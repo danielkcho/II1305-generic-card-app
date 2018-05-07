@@ -69,7 +69,7 @@ class BoardStore extends EventEmitter{
         this.addCardToBoard(action.card);
         break;
       }
-      case "FROM_BOARD_TO_HAND": {
+      case "REMOVE_CARD_FROM_BOARD": {
         this.removeCardFromBoard(action.card);
         break;
       }

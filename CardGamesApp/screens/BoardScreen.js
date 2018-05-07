@@ -76,7 +76,7 @@ export default class BoardScreen extends Component {
    return (
     <View style={{flex: 1, flexDirection: this.state.direction}}>
     	<View style={{flex: 20, backgroundColor: 'green'}} >
-    		<View style={{flex: 2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', paddingTop: 20,}}>
+    		<View style={{flex: 2, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', paddingTop: 1}}>
            <TouchableOpacity
          style={buttonstyle.button}
          onPress={() => {

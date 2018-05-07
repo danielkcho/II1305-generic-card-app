@@ -152,7 +152,7 @@ render() {
             style={{paddingTop: 10}}
             onPress={()=>{
               this.refs.toast.show('Joker Added', DURATION.LENGTH_LONG);
-              Actions.createJoker();
+              Actions.createJokerRemote();
               this.renderMethod();
             }}>
             <Text style={{fontSize:20, color:'green'}}>Add Joker</Text>
