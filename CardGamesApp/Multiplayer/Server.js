@@ -13,7 +13,7 @@ import MovableCard from '../Components/MovableCard';
 import * as Actions from '../Actions/Actions';
 import { Player } from '../Components/PlayerObjects';
 import dispatcher from '../Dispatcher/Dispatcher';
-
+import playerStore from '../Store/PlayerStore';
 require("json-circular-stringify");
 
 
@@ -21,9 +21,14 @@ var net = require("net");
 var serverPort = 9000
 
 var server = net.createServer((socket) => {
-      Alert.alert(socket.address().address);
-      //Actions.addPlayer(new Player("player 1"));
-
+      if(!playerStore.containsAddress(socket.address().address)) {
+        player = new Player("player 1");
+        player.setAddress(socket.address().address);
+        connection = new net.Socket();
+        connection.connect(serverPort, socket.address().address);
+        player.setConnection(connection);
+        Actions.addPlayer(player);
+      }
       socket.on('data', (data) => {
         json = JSON.parse(data);
         payload = jsonparser(json);

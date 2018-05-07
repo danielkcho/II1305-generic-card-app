@@ -1,10 +1,14 @@
-import {seed, random} from '../functions/function';
+import {seed, random} from '../functions/functions';
 import {Alert} from 'react-native';
+
+
 //class for handling generic cards
 export class Card {
   constructor(face, back){
     this.face = face;
     this.back = back;
+    this.positionX = 0;
+    this.positionY = 0;
   }
 
 //returns a representation of a card's face side
@@ -25,6 +29,22 @@ export class Card {
 //set the back after creation
   setBack(back){
     this.back = back;
+  }
+
+  //returns the cards position as a fraction of your board width or height in x and y
+  getPositionX(){
+    return this.positionX;
+  }
+  getPositionY(){
+    return this.positionY;
+  }
+
+  // storeing positions in fractions of width and height for x and y in order to render on other devices
+  setPositionX(x){
+    this.positionX = x;
+  }
+  setPositionY(y){
+    this.positionY = y;
   }
 
   buildWithJSON(json){
@@ -126,6 +146,8 @@ export class PlayingCard extends Card{
     this.status = json.status;
     this.change = json.change;
     this.flipped = json.flipped;
+    this.positionX = json.positionX;
+    this.positionY = json.positionY;
   }
 
 }

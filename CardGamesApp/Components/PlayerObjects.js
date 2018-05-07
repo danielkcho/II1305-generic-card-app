@@ -1,4 +1,5 @@
 import {Alert} from 'react-native';
+var net = require("net");
 //class for handling players
 export class Player {
   constructor(name){
@@ -53,7 +54,7 @@ export class Player {
 
 //set the player TCP socket for connection
   setConnection(socket){
-    this.socket = socket;
+    this.connection = socket;
   }
 
 //set the IP address to the player
