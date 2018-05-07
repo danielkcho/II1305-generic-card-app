@@ -181,11 +181,6 @@ export class Deck {
 *  filter out all cards with value greater than
 *  OR equal to num.
 */
-
-/*
-*  this currently doesn't work because it
-*  resizes the array midway through.
-*/
   filterGreaterOrEquals(num){
     var i;
     for (i = 0; i<this.cards.length; i++){
@@ -199,11 +194,6 @@ export class Deck {
 /*
 *  filter out all cards with value less than
 *  OR equal to num.
-*/
-
-/*
-*  this currently doesn't work because it
-*  resizes the array midway through.
 */
 
   filterLessOrEquals(num){
