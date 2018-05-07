@@ -65,13 +65,13 @@ componentWillMount() {
        if(this.props.card.isFlipped()){
           return(
                 <Animated.View style={imageStyle} {...this._panResponder.panHandlers}>
-                   {this.props.card.getBack()}
+                   {cardifier(this.props.card, 'back')}
                 </Animated.View>
           )
        }else{
           return(
                 <Animated.View style={imageStyle} {...this._panResponder.panHandlers}>
-                   {this.props.card.getFace()}
+                   {cardifier(this.props.card, 'front')}
                 </Animated.View>
           )
         }

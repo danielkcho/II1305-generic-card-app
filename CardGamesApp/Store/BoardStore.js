@@ -49,8 +49,8 @@ class BoardStore extends EventEmitter{
   removeCardFromBoard(card) {
     let i = 0;
     for (i = 0; i < this.cards.length; i++){
-      if(card.getID() == this.cards[i].getID()) {
-        var card = this.cards.splice(i, 1);
+      if(this.cards[i] != null && card.getID() == this.cards[i].getID()) {
+        this.cards[i] = null;
         break;
       }
     }

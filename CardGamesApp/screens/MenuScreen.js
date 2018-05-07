@@ -79,7 +79,7 @@ render() {
       <TouchableOpacity
           style={{padding: 10}}
           onPress={()=>{
-              Actions.createDeck();
+              Actions.createDeckRemote();
               this.renderMethod();
               this.refs.toast.show('Deck Created', DURATION.LENGTH_LONG);
           }}>
@@ -208,7 +208,7 @@ render() {
           style={{padding: 1}}
           onPress={()=>{
               this.refs.toast.show('Deck Created', DURATION.LENGTH_LONG);
-              Actions.createDeck();
+              Actions.createDeckRemote();
               this.renderMethod();
           }}>
           <Text style={{fontSize:20, color:'green'}}>Create a deck</Text>

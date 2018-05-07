@@ -1,5 +1,16 @@
-import dispatcher from "../Dispatcher/Dispatcher";
-import client from "../Multiplayer/Client";
+import React, { Component } from 'react';
+import { Text, AppRegistry, Alert, Button, Dimensions, FlatList, Platform,
+  Props, View, StyleSheet, TouchableWithoutFeedback, TouchableHighlight, TouchableOpacity } from 'react-native';
+import handStore from '../Store/HandStore';
+import FlipCard from '../Components/FlipCard';
+import dispatcher from '../Dispatcher/Dispatcher';
+import * as Actions from '../Actions/Actions';
+import styles from '../assets/StyleSheets'
+import {cardifier, buildDeck, jsonifier} from '../functions/functions';
+import {PlayingCard, Deck, Card} from '../Components/CardObjects';
+import deckStore from '../Store/DeckStore';
+import MovableCard from '../Components/MovableCard';
+import client from '../Multiplayer/Client';
 
 //sample action for adding cards to hand
 export function addCardToHand(card){
@@ -49,9 +60,9 @@ export function addCardToBoardRemote(card){
     type: "ADD_CARD_TO_BOARD",
     card,
   }
+  jsonifiedTwo = jsonifier(data, "CARD");
   dispatcher.dispatch(data);
-  //for each, somehow:
-  //client.write(data);
+  client.write(jsonifiedTwo);
 }
 
 //action for adding cards to board
@@ -123,10 +134,9 @@ export function filterDeckL(num){
 export function createDeckRemote(){
   data = {
     type: "CREATE_DECK",
-  };
+  }
   dispatcher.dispatch(data);
-  //for each, somehow:
-  //client.write(data);
+  client.write(jsonifier(data, "NIL"));
 }
 
 //action for creating deck
@@ -136,18 +146,19 @@ export function createDeck(){
   })
 }
 
-/*
+
 //tell everyone else to set the deck to something
 //probably a good idea to use this after shuffling
-export function setDeckRemote(){
+/*export function setDeckRemote(deck){
   data = {
     type: "SET_DECK",
     deck,
   };
-  //for each, somehow:
-  //client.write(data);
+
+  client.write(jsonifier(data, "DECK"));
 }
 */
+
 
 /*
 //action for replacing the deck
@@ -159,26 +170,27 @@ export function setDeck(deck){
 }
 */
 
-/*
+
 //tell everyone else to remove the top card of their deck
 //probably use this after you draw a card
+
 export function removeTopCardRemote(){
   data = {
     type: "REMOVE_TOP",
   };
-  //for each, somehow:
-  //client.write(data);
-}
-*/
 
-/*
+  client.write(jsonifier(data, "NIL"));
+}
+
+
+
 //action for discarding the top card of the deck
 export function removeTopCard(){
   dispatcher.dispatch({
     type: "REMOVE_TOP",
   })
 }
-*/
+
 
 //tell everyone to add a joker to top of deck
 export function createJokerRemote(){

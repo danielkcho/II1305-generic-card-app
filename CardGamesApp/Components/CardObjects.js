@@ -124,6 +124,7 @@ export class PlayingCard extends Card{
     this.ID = json.ID;
     this.status = json.status;
     this.change = json.change;
+    this.flipped = json.flipped;
   }
 
 }
@@ -131,12 +132,12 @@ export class PlayingCard extends Card{
 //class for representing a deck of cards
 export class Deck {
   constructor(){
-    this.cards = new Array();
+    this.cards = [];
   }
 
 //JSON stuff again. Shot version, JSON can't handle methods
   buildWithJSON(json){
-    this.deck = json.deck;
+    this.cards = json.cards;
   }
 
 //shuffle the deck
